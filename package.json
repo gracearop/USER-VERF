@@ -1,0 +1,20 @@
+{
+  "name": "tail",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    
+      "build": "run-p build:css1 build:css2",
+      "build:css1": "npx tailwindcss -i ./css.css -o ./dist/output.css --watch",
+      "build:css2": "npx tailwindcss -i ./styles.css -o ./dist/input.css --watch"
+    
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "npm-run-all": "^4.1.5",
+    "tailwindcss": "^3.4.1"
+  }
+}

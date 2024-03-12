@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+.alert-success {
+    max-width: 24rem;
+    padding: 1.5rem;
+    /* background-color: #fff; */
+    /* border: 1px solid #ccc; */
+    border-radius: 0.375rem;
+    /* box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1); */
+    background-color: transparent; /* Change the background color to transparent */
+    /* Add any other styles you want for the success alert message */
+  }
+  
+  .alert-success .flex {
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    color: #2f855a;
+    border: 1px solid #48bb78;
+    border-radius: 0.375rem;
+    background-color: transparent; /* Change the background color to transparent */
+    /* Add any other styles you want for the success alert message */
+    /* background-color: #edf7ed; */
+  }
+  
+  .alert-success svg {
+    flex-shrink: 0;
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.75rem;
+  }
+  
+  .alert-danger {
+    /* Your CSS styles here */
+    /* For example: */
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.875rem; /* Equivalent to text-sm */
+    color: #DC2626; /* Red color */
+    border: 1px solid #DC2626; /* Red border */
+    border-radius: 0.375rem; /* Equivalent to rounded-lg */
+    background-color: #111827; /* Black background */
+  }
+  
+  .alert-danger svg {
+    /* Your SVG styles here */
+    /* For example: */
+    flex-shrink: 0;
+    width: 1rem; /* Equivalent to w-4 */
+    height: 1rem; /* Equivalent to h-4 */
+    margin-right: 0.75rem; /* Equivalent to me-3 */
+  }
+  

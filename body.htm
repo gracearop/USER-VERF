@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Email</title>
+</head>
+<body>
+    <div class="wrapper">
+        <p>
+            Thank you for signing up on our website. Please click on the link below 
+            to verify your email.
+        </p>
+        <a href="http://localhost/USER_VERIFICATION_PROJECT/home.php?token=<?php echo $token; ?>">
+            Verify your email address
+        </a>
+    </div>
+</body>
+</html>
+
+<?php
+require_once 'vendor/autoload.php';
+require_once 'config/constants.php';
+
+// Create the Transport
+$transport = (new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls'))
+  ->setUsername( 'aropgracekaka@gmail.com')
+  ->setPassword('wmml mbzt iwfz dccc');
+
+// Create the Mailer using your created Transport
+$mailer = new Swift_Mailer($transport);
+
+
+
+function sendVerificationEmail($email, $token)
+{
+    global $mailer;
+    $body = '<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Verify Email</title>
+    </head>
+    <body>
+        <div class="wrapper">
+            <p>
+                Thank you for signing up on our website. Please click on the link below 
+                to verify your email.
+            </p>
+            <a href="http://localhost/USER_VERIFICATION_PROJECT/home.php?token='. $token .'">
+                Verify your email address
+            </a>
+        </div>
+    </body>
+    </html>';
+        // Create a message
+        $message = (new Swift_Message('Verif your email address'))
+        ->setFrom(EMAIL)
+        ->setTo($email)
+        ->setBody($body,'text/html')
+        ;
+
+        // Send the message
+        $result = $mailer->send($message);
+        return $result;
+}
+            
+?>
+
+
+
+
+<?php
+
+// emailController.php
+
+function sendVerificationEmail($email, $token)
+{
+    $to = $email;
+    $subject = 'Email Verification';
+    $message = 'Please click the following link to verify your email: <a href="http://localhost/USER_VERIFICATION_PROJECT/home.php?token='. $token .'"> Verify Email</a>';
+    $headers = 'From: aropgracekaka@gmail.com' . "\r\n" .
+               'Content-Type: text/html; charset=UTF-8' . "\r\n";
+
+    mail($to, $subject, $message, $headers);
+}
+
+
+?>
+
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', 'sans-serif';
+}
+
+body{
+    height: 100vh;
+    background-color: #000;
+    background-image: url('image/istockphoto-1270760632-612x612.jpg');
+    background-size: cover;
+    background-position: center;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+}
+a:hover{
+    color: orange;
+}
+header{
+    position: relative;
+    padding: 0.2rem;
+}
+.navbar{
+    width:100%;
+    height: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar .logo a{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.navbar .links{
+    display: flex;
+    gap: 2rem;
+}
+
+.navbar .toggle_btn{
+    color:#fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+
+}
+.action_btn{
+    background-color: orange;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: scale 0.2 ease;
+}
+
+.action_btn:hover{
+    scale: 1.05;
+    color: #fff;
+}
+.action_btn:active{
+    scale: 0.95;   
+}
+/* DROPDOWN MENU */
+.dropdown_menu{
+    position: absolute;
+    right: 2rem;
+    top: 60px;
+    height: 0;
+    width: 300px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.dropdown_menu.open{
+    height: 240px;
+}
+.dropdown_menu li{
+    padding: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dropdown_menu .action_btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+@media screen and (max-width: 992px) {
+    .navbar .links,
+    .navbar .action_btn{
+        display: none;
+    }
+    .navbar .toggle_btn{
+        display: block;
+    }
+    .dropdown_menu{
+        display: block;
+    }
+}
